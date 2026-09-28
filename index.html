@@ -1,0 +1,1899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reporte Ejecutivo Semanal | Casa Kiwi Hostel (21 - 27 Sep 2026)</title>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --kiwi-black: #1A1A1A;
+      --kiwi-dark: #242424;
+      --kiwi-orange: #E64A19;
+      --kiwi-orange-bright: #FF5722;
+      --kiwi-orange-light: #FBE9E7;
+      --kiwi-yellow: #FBC02D;
+      --kiwi-yellow-bright: #FFEB3B;
+      --kiwi-yellow-light: #FFFDE7;
+      --kiwi-gray-dark: #424242;
+      --kiwi-gray-medium: #757575;
+      --kiwi-gray-light: #F8F9FA;
+      --kiwi-card-border: #EAEAEA;
+      --alert-red: #D32F2F;
+      --alert-red-light: #FFEBEE;
+      --alert-green: #2E7D32;
+      --alert-green-light: #E8F5E9;
+      --alert-blue: #1565C0;
+      --alert-blue-light: #E3F2FD;
+      --shadow-sm: 0 2px 6px rgba(0,0,0,0.04);
+      --shadow-md: 0 6px 18px rgba(0,0,0,0.06);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #FFFFFF;
+      color: var(--kiwi-black);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Gradient Accent */
+    .top-gradient-bar {
+      height: 6px;
+      background: linear-gradient(90deg, var(--kiwi-black) 0%, var(--kiwi-orange) 50%, var(--kiwi-yellow) 100%);
+      width: 100%;
+    }
+
+    /* Header Container */
+    header {
+      background-color: #FFFFFF;
+      border-bottom: 1px solid var(--kiwi-card-border);
+      padding: 1.8rem 2rem 1.4rem 2rem;
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    /* Logo Romboidal Oficial Casa Kiwi */
+    .kiwi-logo-svg {
+      width: 96px;
+      height: 96px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
+    }
+
+    .brand-title-area h1 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--kiwi-black);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-title-area p {
+      color: var(--kiwi-gray-medium);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .tag-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      background-color: var(--kiwi-gray-light);
+      color: var(--kiwi-gray-dark);
+      border: 1px solid var(--kiwi-card-border);
+    }
+
+    .tag-badge.active {
+      background-color: var(--alert-green-light);
+      color: var(--alert-green);
+      border-color: rgba(46, 125, 50, 0.2);
+    }
+
+    .executive-quote {
+      background-color: var(--kiwi-orange-light);
+      border-left: 4px solid var(--kiwi-orange);
+      padding: 1rem 1.25rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-size: 0.93rem;
+      font-weight: 500;
+      color: var(--kiwi-black);
+      margin-top: 0.8rem;
+    }
+
+    /* Sticky Navigation */
+    nav.sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #FFFFFF;
+      border-bottom: 2px solid var(--kiwi-orange);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow-x: auto;
+      padding: 0.5rem 1.5rem;
+      gap: 0.5rem;
+      white-space: nowrap;
+      scrollbar-width: thin;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--kiwi-gray-dark);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--kiwi-orange-light);
+      color: var(--kiwi-orange);
+    }
+
+    .btn-print {
+      background-color: var(--kiwi-black);
+      color: #FFFFFF;
+      border: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.45rem 1rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn-print:hover {
+      background-color: var(--kiwi-orange);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1380px;
+      margin: 1.5rem auto 3rem auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* Section Structure */
+    section {
+      scroll-margin-top: 4rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--kiwi-card-border);
+      padding-bottom: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--kiwi-black);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-header .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--kiwi-gray-medium);
+      font-weight: 500;
+    }
+
+    /* Cards */
+    .card {
+      background-color: #FFFFFF;
+      border: 1px solid var(--kiwi-card-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: 1.4rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Methodological Card */
+    .methodology-box {
+      background-color: #FCFCFD;
+      border: 1px solid #DFE3E8;
+      border-left: 5px solid var(--alert-blue);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .methodology-item h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--alert-blue);
+      margin-bottom: 0.35rem;
+    }
+
+    .methodology-item p {
+      font-size: 0.82rem;
+      color: var(--kiwi-gray-dark);
+      line-height: 1.45;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+
+    .kpi-card {
+      background: #FFFFFF;
+      border: 1px solid var(--kiwi-card-border);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      position: relative;
+      border-left: 5px solid var(--kiwi-orange);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kpi-card.green { border-left-color: var(--alert-green); }
+    .kpi-card.yellow { border-left-color: var(--kiwi-yellow); }
+    .kpi-card.blue { border-left-color: var(--alert-blue); }
+    .kpi-card.black { border-left-color: var(--kiwi-black); }
+
+    .kpi-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .kpi-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--kiwi-gray-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-icon {
+      font-size: 1.1rem;
+    }
+
+    .kpi-value {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--kiwi-black);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+
+    .kpi-subtext {
+      font-size: 0.75rem;
+      color: var(--kiwi-gray-dark);
+      font-weight: 500;
+    }
+
+    .kpi-badge {
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .badge-success { background: var(--alert-green-light); color: var(--alert-green); }
+    .badge-warning { background: var(--kiwi-yellow-light); color: #856404; }
+    .badge-info { background: var(--alert-blue-light); color: var(--alert-blue); }
+    .badge-orange { background: var(--kiwi-orange-light); color: var(--kiwi-orange); }
+
+    /* Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 0.75rem;
+      border: 1px solid var(--kiwi-card-border);
+      border-radius: var(--radius-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--kiwi-gray-light);
+      color: var(--kiwi-gray-dark);
+      font-weight: 700;
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid var(--kiwi-card-border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid #F1F1F1;
+      color: var(--kiwi-black);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: #FAFAFA;
+    }
+
+    tr.highlight-peak td {
+      background-color: #E8F5E9 !important;
+      font-weight: 600;
+    }
+
+    tr.row-total td {
+      background-color: var(--kiwi-gray-light);
+      font-weight: 800;
+      border-top: 2px solid var(--kiwi-card-border);
+    }
+
+    .text-right { text-align: right; }
+    .text-center { text-align: center; }
+
+    /* Chart Containers */
+    .chart-box {
+      position: relative;
+      height: 290px;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    /* Insights Box */
+    .insight-card {
+      margin-top: 1rem;
+      background-color: #FFFFFF;
+      border: 1px solid var(--kiwi-card-border);
+      border-left: 4px solid var(--kiwi-yellow);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.84rem;
+      color: var(--kiwi-gray-dark);
+    }
+
+    .insight-card strong {
+      color: var(--kiwi-black);
+    }
+
+    .context-alert {
+      background-color: #FFF8E1;
+      border-left: 4px solid var(--kiwi-yellow-bright);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+      color: #5D4037;
+    }
+
+    /* Strategy 4 Columns */
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .strategy-col {
+      background: #FFFFFF;
+      border: 1px solid var(--kiwi-card-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .col-fortalezas { border-top: 4px solid var(--alert-green); }
+    .col-atencion { border-top: 4px solid var(--kiwi-orange); }
+    .col-riesgos { border-top: 4px solid var(--alert-red); }
+    .col-acciones { border-top: 4px solid var(--alert-blue); }
+
+    .strategy-col h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .strategy-col ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .strategy-col li {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: var(--kiwi-gray-dark);
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .strategy-col li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 1.1rem;
+      top: -2px;
+    }
+
+    .col-fortalezas li::before { color: var(--alert-green); }
+    .col-atencion li::before { color: var(--kiwi-orange); }
+    .col-riesgos li::before { color: var(--alert-red); }
+    .col-acciones li::before { color: var(--alert-blue); }
+
+    /* Metric Value Spotlight */
+    .metric-spotlight {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .spotlight-box {
+      background: var(--kiwi-gray-light);
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--kiwi-card-border);
+      text-align: center;
+    }
+
+    .spotlight-box .spot-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--kiwi-black);
+    }
+
+    .spotlight-box .spot-lbl {
+      font-size: 0.72rem;
+      color: var(--kiwi-gray-medium);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Footer */
+    footer {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--kiwi-card-border);
+      text-align: center;
+      color: var(--kiwi-gray-medium);
+      font-size: 0.8rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 1.5rem 1rem 1rem 1rem; }
+      main { padding: 0 1rem; }
+      .brand-title-area h1 { font-size: 1.3rem; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Print / PDF Optimization */
+    @media print {
+      body {
+        background-color: #FFFFFF !important;
+        font-size: 10pt;
+        color: #000000;
+      }
+      .top-gradient-bar { height: 4px; }
+      nav.sticky-nav, .btn-print { display: none !important; }
+      header { padding: 1rem 0; border-bottom: 2px solid var(--kiwi-black); }
+      main { max-width: 100%; margin: 0; padding: 0; gap: 1.5rem; }
+      .card, .strategy-col, .kpi-card {
+        box-shadow: none !important;
+        border: 1px solid #CCC !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .chart-box { height: 220px !important; }
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior de Identidad Casa Kiwi -->
+  <div class="top-gradient-bar"></div>
+
+  <!-- Encabezado Principal -->
+  <header>
+    <div class="header-top">
+      <div class="brand-group">
+        <!-- LOGO OFICIAL EMBLEMÁTICO CASA KIWI HOSTEL MEDELLÍN -->
+        <svg class="kiwi-logo-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Rombo exterior rojo/naranja con esquinas redondeadas -->
+          <rect x="250" y="30" width="310" height="310" rx="42" transform="rotate(45 250 30)" fill="#E52818"/>
+          <!-- Rombo interior amarillo con esquinas redondeadas -->
+          <rect x="250" y="112" width="195" height="195" rx="26" transform="rotate(45 250 112)" fill="#FFDF00" stroke="#1A1A1A" stroke-width="12"/>
+          
+          <!-- Pájaro Kiwi Silueta Negra Central -->
+          <g fill="#1A1A1A">
+            <!-- Cuerpo redondo del Kiwi -->
+            <ellipse cx="230" cy="254" rx="45" ry="38"/>
+            <circle cx="258" cy="242" r="22"/>
+            <!-- Pico largo característico hacia la derecha abajo -->
+            <path d="M272 243 C290 252 308 274 316 298 C310 292 292 268 272 251 Z"/>
+            <!-- Ojo amarillo -->
+            <circle cx="266" cy="242" r="3.2" fill="#FFDF00"/>
+            <!-- Patas con garras -->
+            <path d="M214 286 L206 312 L198 314 M206 312 L208 320 M206 312 L216 317" stroke="#1A1A1A" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M234 288 L230 310 L222 312 M230 310 L231 319 M230 310 L240 314" stroke="#1A1A1A" stroke-width="4.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- Textos en arco perimetral del rombo -->
+          <!-- CASA (Superior Izquierda) -->
+          <g transform="translate(152, 175) rotate(-45)">
+            <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Arial Black', sans-serif" font-weight="900" font-size="52" fill="#1A1A1A" text-anchor="middle" letter-spacing="3">CASA</text>
+          </g>
+          <!-- KiWi (Superior Derecha) -->
+          <g transform="translate(348, 175) rotate(45)">
+            <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Arial Black', sans-serif" font-weight="900" font-size="52" fill="#1A1A1A" text-anchor="middle" letter-spacing="2">KiWi</text>
+          </g>
+          <!-- HOSTEL (Inferior Izquierda) -->
+          <g transform="translate(160, 335) rotate(45)">
+            <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Arial Black', sans-serif" font-weight="900" font-size="34" fill="#1A1A1A" text-anchor="middle" letter-spacing="5">HOSTEL</text>
+          </g>
+          <!-- MEDELLÍN (Inferior Derecha) -->
+          <g transform="translate(340, 335) rotate(-45)">
+            <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Arial Black', sans-serif" font-weight="900" font-size="32" fill="#1A1A1A" text-anchor="middle" letter-spacing="4">MEDELLÍN</text>
+          </g>
+        </svg>
+
+        <div class="brand-title-area">
+          <h1>CASA KIWI HOSTEL — MEDELLÍN</h1>
+          <p>Informe Ejecutivo de Control Financiero, Ocupación y Revenue Management</p>
+        </div>
+      </div>
+      <div class="meta-tags">
+        <span class="tag-badge active">● Reporte Oficial Consolidado</span>
+        <span class="tag-badge">Semana: 21 - 27 Septiembre 2026</span>
+        <span class="tag-badge">Fecha de Corte: 28 Sep 2026</span>
+        <span class="tag-badge">Medellín, Antioquia</span>
+        <span class="tag-badge">Fuente: PMS Lobby / Control Interno</span>
+      </div>
+    </div>
+    <div class="executive-quote" id="executiveHeadline">
+      Cargando síntesis ejecutiva semanal...
+    </div>
+  </header>
+
+  <!-- Navegación Superior Sticky -->
+  <nav class="sticky-nav">
+    <div class="nav-inner">
+      <div class="nav-links">
+        <a href="#metodologia">Alcance</a>
+        <a href="#kpis">KPIs</a>
+        <a href="#ocupacion">Ocupación</a>
+        <a href="#flujo">Flujo In/Out</a>
+        <a href="#ventas">Ventas PMS</a>
+        <a href="#checkouts">Check-outs</a>
+        <a href="#checkins">Check-ins</a>
+        <a href="#reservas">Reservas Creadas</a>
+        <a href="#upselling">Upselling</a>
+        <a href="#retail">Retail</a>
+        <a href="#comparativas">Comparativas</a>
+        <a href="#demografia">Demografía</a>
+        <a href="#estrategia">Estrategia</a>
+      </div>
+      <button class="btn-print" onclick="window.print()">
+        <span>🖨️</span> Imprimir / PDF
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- NOTA METODOLÓGICA -->
+    <section id="metodologia">
+      <div class="methodology-box">
+        <div class="methodology-item">
+          <h4>📌 Demanda Comercial vs. Operación Diaria</h4>
+          <p><strong>Reservas Creadas:</strong> Representa la captación comercial generada durante la semana (91 reservas / $15,87M COP ajustados), con estadías inmediatas o futuras[cite: 1]. <strong>Check-ins Realizados:</strong> Corresponde a los huéspedes que ingresaron fácticamente al hostal (85 registros / 126 huéspedes / $11,94M COP ajustados tras incorporar los cargos consolidados de Santiago Posada)[cite: 1]. No deben sumarse ni confundirse.</p>
+        </div>
+        <div class="methodology-item">
+          <h4>📌 Producción vs. Flujo de Caja (Efectivo/Banco)</h4>
+          <p><strong>Ventas PMS ($16,88M COP):</strong> Facturación devengada en el periodo (alojamiento, bar, extras)[cite: 1]. <strong>Ingresos Recibidos ($11,05M COP) + Anticipos ($2,36M COP):</strong> Entradas reales a caja y bancos ($13,42M COP)[cite: 1]. Flujo neto semanal estimado en $11,54M COP frente a egresos operativos reportados de $1,87M COP canalizados mediante caja menor[cite: 1].</p>
+        </div>
+        <div class="methodology-item">
+          <h4>📌 Regla de Comisiones por Canal</h4>
+          <p>Cálculo de ingreso neto auditado: <strong>Booking.com:</strong> Valor Lobby - 18% comisión contractual[cite: 1]. <strong>Hostelworld:</strong> Valor Lobby + 26% de ajuste por retención previa del depósito[cite: 1]. <strong>Canales Directos</strong> (Recepción, Santiago Posada, Motor Web): 0% comisión deducida[cite: 1].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01. KPIs -->
+    <section id="kpis">
+      <div class="section-header">
+        <h2><span>⚡</span> SECCIÓN 01 — Indicadores Clave de Desempeño (KPIs)</h2>
+        <span class="section-subtitle">Consolidado general auditado del 21 al 27 de septiembre de 2026</span>
+      </div>
+      <div class="kpi-grid" id="kpiContainer">
+        <!-- Render dinámico desde reportData -->
+      </div>
+    </section>
+
+    <!-- 02. OCUPACIÓN -->
+    <section id="ocupacion">
+      <div class="section-header">
+        <h2><span>📊</span> SECCIÓN 02 — Ocupación Diaria y Capacidad</h2>
+        <span class="section-subtitle">Inventario base disponible: 50 unidades diarias | 350 unidades-noche semanales[cite: 1]</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Evolución Diaria de Ocupación (%)</h3>
+          <div class="chart-box">
+            <canvas id="chartOcupacion"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Matriz Diaria de Capacidad y Ventas</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Día</th>
+                  <th class="text-right">Disponible</th>
+                  <th class="text-right">Vendidas</th>
+                  <th class="text-right">Sin Vender</th>
+                  <th class="text-right">Ocupación %</th>
+                </tr>
+              </thead>
+              <tbody id="tablaOcupacion">
+                <!-- Inyección JS -->
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Lectura de Revenue:</strong> El promedio del 50,0% (+13,1 pp vs. semana 14-20) fue impulsado por un <strong>pico extraordinario el viernes 25 (84%)</strong>[cite: 1]. El comportamiento de lunes a jueves promedió 43,0%, mientras el sábado ajustó a 50% y el domingo a 44%[cite: 1]. De las 42 unidades ocupadas el viernes, 25 procedieron de reservas generadas con menos de 24 horas de antelación[cite: 1].
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. FLUJO IN / OUT -->
+    <section id="flujo">
+      <div class="section-header">
+        <h2><span>🔄</span> SECCIÓN 03 — Flujo Operativo: Check-ins vs. Check-outs</h2>
+        <span class="section-subtitle">Impacto de rotación de camas, carga de recepción y logística de habitaciones[cite: 1]</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Entradas vs. Salidas Diarias</h3>
+          <div class="chart-box">
+            <canvas id="chartFlujoInOut"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Impacto Operativo Diario</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Día</th>
+                  <th class="text-center">Check-ins</th>
+                  <th class="text-center">Check-outs (Est.)</th>
+                  <th class="text-center">Flujo Neto</th>
+                  <th class="text-center">Ocupación</th>
+                  <th>Impacto Operativo</th>
+                </tr>
+              </thead>
+              <tbody id="tablaFlujo">
+                <!-- Inyección JS -->
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Gobernanza Operativa:</strong> El viernes 25 concentró la mayor rotación (33 check-ins / 41 huéspedes), canalizada eficientemente en recepción y preparación de lencería por la llegada combinada de turismo individual y el grupo deportivo[cite: 1].
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. VENTAS PMS E INGRESOS -->
+    <section id="ventas">
+      <div class="section-header">
+        <h2><span>💰</span> SECCIÓN 04 — Ventas PMS, Recaudo y Medios de Pago</h2>
+        <span class="section-subtitle">Producción total devengada vs. flujos de caja liquidados en caja y bancos[cite: 1]</span>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Ventas por Categoría</h3>
+          <div class="chart-box">
+            <canvas id="chartCategoriasVentas"></canvas>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Línea</th>
+                  <th class="text-right">Venta</th>
+                  <th class="text-right">Part. %</th>
+                </tr>
+              </thead>
+              <tbody id="tablaVentasCat">
+                <!-- Inyección JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Medios de Pago (Ingresos Recibidos)</h3>
+          <div class="chart-box">
+            <canvas id="chartMediosPago"></canvas>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Medio</th>
+                  <th class="text-right">Monto</th>
+                  <th class="text-right">Part. %</th>
+                </tr>
+              </thead>
+              <tbody id="tablaMediosPago">
+                <!-- Inyección JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Flujo de Caja y Egresos Operativos</h3>
+          <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:0.5rem;">
+            <div style="background:var(--kiwi-gray-light); padding:0.85rem; border-radius:var(--radius-sm);">
+              <div style="font-size:0.75rem; color:var(--kiwi-gray-medium); font-weight:700;">TOTAL ENTRADAS SEMANALES</div>
+              <div style="font-size:1.3rem; font-weight:800; color:var(--alert-green);">$13.417.669 COP</div>
+              <div style="font-size:0.72rem; color:var(--kiwi-gray-dark);">Ingresos Recibidos ($11,05M) + Anticipos ($2,36M)[cite: 1]</div>
+            </div>
+            <div style="background:var(--kiwi-gray-light); padding:0.85rem; border-radius:var(--radius-sm);">
+              <div style="font-size:0.75rem; color:var(--kiwi-gray-medium); font-weight:700;">EGRESOS OPERATIVOS DEL PERIODO</div>
+              <div style="font-size:1.3rem; font-weight:800; color:var(--kiwi-gray-dark);">$1.873.884 COP</div>
+              <div style="font-size:0.72rem; color:var(--kiwi-gray-dark);">Caja menor operativa: Hotelería 83,7% | Bar 11,7% | Rest. 4,6%[cite: 1]</div>
+            </div>
+            <div style="background:var(--kiwi-orange-light); padding:0.85rem; border-radius:var(--radius-sm); border-left:4px solid var(--kiwi-orange);">
+              <div style="font-size:0.75rem; color:var(--kiwi-orange); font-weight:700;">FLUJO NETO DE CAJA ESTIMADO</div>
+              <div style="font-size:1.35rem; font-weight:800; color:var(--kiwi-black);">$11.543.785 COP</div>
+              <div style="font-size:0.72rem; color:var(--kiwi-gray-dark);">Excelente liquidez: $7,16 ingresados por cada $1 egresado[cite: 1]</div>
+            </div>
+          </div>
+          <div class="insight-card" style="margin-top:0.75rem;">
+            <strong>Dinámica Financiera:</strong> Los ingresos presentan un perfil altamente digital y bancarizado (77,1% en tarjetas débito y crédito)[cite: 1], mientras los egresos cubren desembolsos operativos corrientes de insumos e intendencia con soporte de caja menor[cite: 1].
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. CHECK-OUTS -->
+    <section id="checkouts">
+      <div class="section-header">
+        <h2><span>🚪</span> SECCIÓN 05 — Check-outs y Gestión de Rotación</h2>
+        <span class="section-subtitle">Noches de estadía finalizadas, perfiles de salida y demanda operativa[cite: 1]</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Estructura de Salidas por Tipo de Alojamiento</h3>
+          <div class="chart-box">
+            <canvas id="chartCheckouts"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Balance Operativo de Salidas</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Concepto</th>
+                  <th class="text-right">Privadas</th>
+                  <th class="text-right">Dormitorios</th>
+                  <th class="text-right">Total Estadiaje</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Check-ins de la Cohorte</td>
+                  <td class="text-right">39 (45,9%)</td>
+                  <td class="text-right">46 (54,1%)</td>
+                  <td class="text-right"><strong>85</strong></td>
+                </tr>
+                <tr>
+                  <td>Huéspedes Asociados</td>
+                  <td class="text-right">80 (63,5%)</td>
+                  <td class="text-right">46 (36,5%)</td>
+                  <td class="text-right"><strong>126</strong></td>
+                </tr>
+                <tr>
+                  <td>Noches Generadas</td>
+                  <td class="text-right">85 noches</td>
+                  <td class="text-right">81 noches</td>
+                  <td class="text-right"><strong>166 noches</strong></td>
+                </tr>
+                <tr>
+                  <td>Estancia Promedio</td>
+                  <td class="text-right">2,18 noches</td>
+                  <td class="text-right">1,76 noches</td>
+                  <td class="text-right"><strong>1,95 noches</strong></td>
+                </tr>
+                <tr class="row-total">
+                  <td>Producción Económica</td>
+                  <td class="text-right">$7.730.753 (71,1%)</td>
+                  <td class="text-right">$3.135.525 (28,9%)</td>
+                  <td class="text-right"><strong>$10.866.278</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Impacto en Housekeeping:</strong> La corta estadía media (1,95 noches general y 1,76 en dormitorios) exige agilidad en recambio de lencería[cite: 1]. Las privadas, con tiempos de rotación controlados, generan más del 71% del recaudo de alojamiento[cite: 1].
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. CHECK-INS Y RENTABILIDAD -->
+    <section id="checkins">
+      <div class="section-header">
+        <h2><span>📥</span> SECCIÓN 06 — Check-ins Efectivos y Rentabilidad por Canal</h2>
+        <span class="section-subtitle">Evaluación financiera consolidada de ingresos reales de llegadas</span>
+      </div>
+
+      <!-- TARJETA EXPLICATIVA ACTUALIZACIÓN SANTIAGO POSADA -->
+      <div class="context-alert">
+        <strong>📋 Actualización y Consolidación Canal Santiago Posada:</strong><br>
+        Se integraron formalmente los <strong>6 registros comerciales efectivos</strong> de la semana con la liquidación total de la reserva maestra del grupo deportivo colombiano ($1.207.434 COP: $162.435 en alojamiento y $1.044.999 en consumos/extras consolidados, cancelada al 100% y con saldo en $0). Con esta consolidación, Santiago Posada generó <strong>$1.996.734 COP</strong> (+$1.070.934 COP frente al cálculo preliminar de solo alojamiento individual), alcanzando un ticket promedio récord de <strong>$332.789 COP por reserva</strong>.
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Ingreso Neto Ajustado por Canal (Check-ins)</h3>
+          <div class="chart-box">
+            <canvas id="chartCheckinsCanales"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Distribución Financiera de Llegadas</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Canal</th>
+                  <th class="text-center">Res. Efectivas</th>
+                  <th class="text-center">Noches</th>
+                  <th class="text-right">Valor Ajustado</th>
+                  <th class="text-right">Ticket Prom.</th>
+                  <th class="text-right">Part. %</th>
+                </tr>
+              </thead>
+              <tbody id="tablaCheckinsCanales">
+                <!-- Inyección JS -->
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Fuerza del Canal Directo:</strong> Los canales sin comisión (Recepción + Santiago Posada + Web) aportaron conjuntamente <strong>$5.324.294 COP (44,6% del valor total de check-ins)</strong>. Santiago Posada se posicionó como el canal con el ticket promedio más elevado ($332.789 COP), superando a Booking ($292.960 COP) gracias a la facturación de consumos del grupo[cite: 1].
+          </div>
+        </div>
+      </div>
+
+      <!-- DETALLE ESPECÍFICO DE CHECK-INS SANTIAGO POSADA -->
+      <div class="card" style="margin-top:1.25rem;">
+        <h3 style="font-size:1rem; margin-bottom:0.6rem;">Auditoría de Reservas Efectivas — Canal Santiago Posada ($1.996.734 COP)</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha Check-in</th>
+                <th>Reserva / Huésped Titular</th>
+                <th>Detalle de Liquidación</th>
+                <th class="text-right">Valor Facturado</th>
+                <th class="text-center">Saldo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>21 Sep 2026</td>
+                <td>Amy Head</td>
+                <td>Alojamiento individual directo</td>
+                <td class="text-right">$214.200 COP</td>
+                <td class="text-center"><span class="tag-badge active">$0</span></td>
+              </tr>
+              <tr>
+                <td>21 Sep 2026</td>
+                <td>Rebecca Rose Gregory</td>
+                <td>Alojamiento individual directo</td>
+                <td class="text-right">$191.100 COP</td>
+                <td class="text-center"><span class="tag-badge active">$0</span></td>
+              </tr>
+              <tr>
+                <td>24 Sep 2026</td>
+                <td>Anne Mara Stirner</td>
+                <td>Alojamiento individual directo</td>
+                <td class="text-right">$117.000 COP</td>
+                <td class="text-center"><span class="tag-badge active">$0</span></td>
+              </tr>
+              <tr>
+                <td>24 Sep 2026</td>
+                <td>Hannes Garbrecht</td>
+                <td>Alojamiento individual directo</td>
+                <td class="text-right">$117.000 COP</td>
+                <td class="text-center"><span class="tag-badge active">$0</span></td>
+              </tr>
+              <tr class="highlight-peak">
+                <td>25 Sep 2026</td>
+                <td><strong>Grupo Deportistas Colombianos</strong></td>
+                <td>Reserva Maestra: $162.435 Aloj. + $1.044.999 Consumos/Extras (Check-out 26 Sep)</td>
+                <td class="text-right"><strong>$1.207.434 COP</strong></td>
+                <td class="text-center"><span class="tag-badge active">$0</span></td>
+              </tr>
+              <tr>
+                <td>26 Sep 2026</td>
+                <td>Hannes Garbrecht</td>
+                <td>Extensión / Noche Adicional directa</td>
+                <td class="text-right">$150.000 COP</td>
+                <td class="text-center"><span class="tag-badge active">$0</span></td>
+              </tr>
+              <tr class="row-total">
+                <td colspan="3">TOTAL GENERADO POR SANTIAGO POSADA</td>
+                <td class="text-right" style="color:var(--alert-green); font-size:0.95rem;">$1.996.734 COP</td>
+                <td class="text-center">100% Pagado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. RESERVAS CREADAS -->
+    <section id="reservas">
+      <div class="section-header">
+        <h2><span>🎯</span> SECCIÓN 07 — Reservas Creadas: Demanda Comercial Captada</h2>
+        <span class="section-subtitle">91 nuevas reservas generadas durante la semana por $15.869.395 COP ajustados[cite: 1]</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Participación Comercial por Canal</h3>
+          <div class="chart-box">
+            <canvas id="chartReservasMix"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Rendimiento Comercial y Anticipación</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Canal</th>
+                  <th class="text-center">Reservas</th>
+                  <th class="text-right">Valor Lobby</th>
+                  <th class="text-right">Comisión / Ajuste</th>
+                  <th class="text-right">Neto Kiwi</th>
+                  <th class="text-center">Antic. Med.</th>
+                </tr>
+              </thead>
+              <tbody id="tablaReservasCreadas">
+                <!-- Inyección JS -->
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Hallazgo Estratégico:</strong> La venta directa superó en volumen a las OTAs (<strong>51,6% vs 48,4%</strong>)[cite: 1]. Booking.com aporta reservas estratégicas de alta duración (3,3 noches) y 30,6 días de anticipación[cite: 1], mientras la venta directa captura la alta demanda espontánea[cite: 1].
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08. UPSELLING: FOCO EN VALOR GENERADO -->
+    <section id="upselling">
+      <div class="section-header">
+        <h2><span>🚀</span> SECCIÓN 08 — Upselling: Maximización de Ingreso Incremental</h2>
+        <span class="section-subtitle">Monetización neta y optimización del RevPAB sin costo de adquisición de nuevo huésped[cite: 1]</span>
+      </div>
+
+      <!-- SPOTLIGHT FINANCIERO DE UPSELLING -->
+      <div class="metric-spotlight">
+        <div class="spotlight-box">
+          <div class="spot-val" style="color:var(--alert-green);">+$279.298</div>
+          <div class="spot-lbl">Ingreso Confirmado</div>
+        </div>
+        <div class="spotlight-box">
+          <div class="spot-val" style="color:var(--alert-blue);">+29,9%</div>
+          <div class="spot-lbl">Crecimiento vs Piloto</div>
+        </div>
+        <div class="spotlight-box">
+          <div class="spot-val">$69.825</div>
+          <div class="spot-lbl">Ticket Prom. Upgrade</div>
+        </div>
+        <div class="spotlight-box">
+          <div class="spot-val" style="color:var(--kiwi-orange);">$672.615</div>
+          <div class="spot-lbl">Pipeline Activo</div>
+        </div>
+        <div class="spotlight-box">
+          <div class="spot-val">$1.201.913</div>
+          <div class="spot-lbl">Potencial Total</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Desglose de Ingresos Confirmados por Upgrades</h3>
+          <p style="font-size:0.83rem; color:var(--kiwi-gray-dark); margin-bottom:0.75rem;">
+            El upselling elevó en promedio un <strong>+24,9% la tarifa base original</strong> de los huéspedes que aceptaron la mejora hacia habitación privada o baño exclusivo[cite: 1]:
+          </p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Huésped Confirmado</th>
+                  <th>Concepto de Upgrade Vendido</th>
+                  <th class="text-right">Ingreso Extra Bruto</th>
+                  <th class="text-center">Canal Origen</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Dayana Valencia</td>
+                  <td>Upgrade a Baño Privado[cite: 1]</td>
+                  <td class="text-right" style="color:var(--alert-green); font-weight:700;">+$29.298 COP[cite: 1]</td>
+                  <td class="text-center"><span class="tag-badge">Booking[cite: 1]</span></td>
+                </tr>
+                <tr>
+                  <td>Marcello Tondin</td>
+                  <td>Upgrade a Categoría Superior[cite: 1]</td>
+                  <td class="text-right" style="color:var(--alert-green); font-weight:700;">+$75.000 COP[cite: 1]</td>
+                  <td class="text-center"><span class="tag-badge">Hostelworld[cite: 1]</span></td>
+                </tr>
+                <tr>
+                  <td>Juan David Rengifo</td>
+                  <td>Upgrade Habitación Privada[cite: 1]</td>
+                  <td class="text-right" style="color:var(--alert-green); font-weight:700;">+$75.000 COP[cite: 1]</td>
+                  <td class="text-center"><span class="tag-badge">Hostelworld[cite: 1]</span></td>
+                </tr>
+                <tr>
+                  <td>Orla O'Connor</td>
+                  <td>Upgrade Suite / Baño Privado[cite: 1]</td>
+                  <td class="text-right" style="color:var(--alert-green); font-weight:700;">+$100.000 COP[cite: 1]</td>
+                  <td class="text-center"><span class="tag-badge">Booking[cite: 1]</span></td>
+                </tr>
+                <tr class="row-total">
+                  <td colspan="2">TOTAL INGRESO INCREMENTAL MONETIZADO</td>
+                  <td class="text-right" style="color:var(--alert-green); font-size:0.95rem;">+$279.298 COP[cite: 1]</td>
+                  <td class="text-center">4 Upgrades[cite: 1]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Impacto Comercial en Margen:</strong> Se duplicó la cantidad de upgrades respecto al ciclo previo (de 2 a 4)[cite: 1], logrando un <strong>66,7% de aceptación entre quienes evaluaron la propuesta</strong>[cite: 1]. La estrategia demuestra que el producto privado de Casa Kiwi admite exitosamente incrementos directos de tarifa.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Pipeline Activo: $672.615 COP en Seguimiento</h3>
+          <p style="font-size:0.83rem; color:var(--kiwi-gray-dark); margin-bottom:0.75rem;">
+            Por cada $1 ya confirmado, existen <strong>$2,41 COP adicionales en la mesa comercial</strong>[cite: 1]. Cuatro cuentas representan el 78,1% del ingreso por capturar[cite: 1]:
+          </p>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Huésped en Seguimiento</th>
+                  <th class="text-right">Valor Incremental Potencial</th>
+                  <th>Priorización Comercial</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="highlight-peak">
+                  <td>Gontran Chevron[cite: 1]</td>
+                  <td class="text-right"><strong>$150.000 COP[cite: 1]</strong></td>
+                  <td>Alta Prioridad[cite: 1] (Mayor impacto individual)</td>
+                </tr>
+                <tr class="highlight-peak">
+                  <td>Pavlos Dagdalianidis[cite: 1]</td>
+                  <td class="text-right"><strong>$125.000 COP[cite: 1]</strong></td>
+                  <td>Alta Prioridad[cite: 1]</td>
+                </tr>
+                <tr class="highlight-peak">
+                  <td>Julian Laki[cite: 1]</td>
+                  <td class="text-right"><strong>$125.000 COP[cite: 1]</strong></td>
+                  <td>Alta Prioridad[cite: 1]</td>
+                </tr>
+                <tr class="highlight-peak">
+                  <td>Nadia Peralta[cite: 1]</td>
+                  <td class="text-right"><strong>$125.000 COP[cite: 1]</strong></td>
+                  <td>Alta Prioridad[cite: 1]</td>
+                </tr>
+                <tr>
+                  <td>José Alberto Ramos[cite: 1]</td>
+                  <td class="text-right">$75.000 COP[cite: 1]</td>
+                  <td>Media Prioridad</td>
+                </tr>
+                <tr>
+                  <td>Geraud Cazals[cite: 1]</td>
+                  <td class="text-right">$50.000 COP[cite: 1]</td>
+                  <td>Media Prioridad</td>
+                </tr>
+                <tr>
+                  <td>Juana Moreno[cite: 1]</td>
+                  <td class="text-right">$22.615 COP[cite: 1]</td>
+                  <td>Complementario</td>
+                </tr>
+                <tr class="row-total">
+                  <td>POTENCIAL EN GESTIÓN</td>
+                  <td class="text-right"><strong>$672.615 COP[cite: 1]</strong></td>
+                  <td>7 Oportunidades[cite: 1]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Proyección de Cierre:</strong> Aplicando la tasa histórica de conversión sobre este pipeline pendiente, se proyecta un recaudo adicional de aproximadamente <strong>+$179.000 COP</strong>[cite: 1], llevando el resultado del ciclo de upselling cerca de los $458.000 COP[cite: 1].
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09. RETAIL RECEPCIÓN -->
+    <section id="retail">
+      <div class="section-header">
+        <h2><span>🛍️</span> SECCIÓN 09 — Retail Recepción y Venta Mostrador</h2>
+        <span class="section-subtitle">Seguimiento de inventarios secundarios y productos de vitrina</span>
+      </div>
+      <div class="card" style="border-left:4px solid var(--kiwi-gray-medium);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h3 style="font-size:1.05rem; margin-bottom:0.25rem;">Estatus del Programa de Retail</h3>
+            <p style="font-size:0.83rem; color:var(--kiwi-gray-medium);">
+              Sin actualización de datos numéricos directos para el corte 21-27 de septiembre. Se contabilizaron únicamente $650.750 COP bajo el rubro global "Extras" del PMS Lobby[cite: 1].
+            </p>
+          </div>
+          <span class="tag-badge">Sin Actualización Específica</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. COMPARATIVAS -->
+    <section id="comparativas">
+      <div class="section-header">
+        <h2><span>📈</span> SECCIÓN 10 — Análisis Histórico y Comparativas</h2>
+        <span class="section-subtitle">Comportamiento frente a semanas previas, meses de 2026 y series históricas (2021-2026)[cite: 1]</span>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Evolución Semanal (Septiembre 2026)</h3>
+          <div class="chart-box">
+            <canvas id="chartCompSemanas"></canvas>
+          </div>
+          <p style="font-size:0.78rem; color:var(--kiwi-gray-dark); margin-top:0.5rem;">
+            La semana 21-27 (50,0%) superó en +13,1 puntos a la semana 14-20 (36,9%) y en +11,1 pp a la semana 7-13 (38,9%)[cite: 1].
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Misma Semana en Años Anteriores</h3>
+          <div class="chart-box">
+            <canvas id="chartCompHistorica"></canvas>
+          </div>
+          <p style="font-size:0.78rem; color:var(--kiwi-gray-dark); margin-top:0.5rem;">
+            Fuerte repunte interanual: +30,0 pp frente a 2025 (20,0%) y +18,6 pp frente a 2024 (31,4%)[cite: 1].
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Ocupación Mensual 2026</h3>
+          <div class="chart-box">
+            <canvas id="chartCompMeses"></canvas>
+          </div>
+          <p style="font-size:0.78rem; color:var(--kiwi-gray-dark); margin-top:0.5rem;">
+            Septiembre acumulado (41,3%) se consolida como el segundo mejor mes del año, superando a Mayo (28,6%) y Julio (37,2%)[cite: 1].
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. DEMOGRAFÍA -->
+    <section id="demografia">
+      <div class="section-header">
+        <h2><span>🌍</span> SECCIÓN 11 — Perfil Demográfico y Mercados Emisores</h2>
+        <span class="section-subtitle">Análisis de 72 titulares semanales, 202 mensuales y 1.871 anuales[cite: 1]</span>
+      </div>
+
+      <!-- ALERTA DE CONTEXTO GRUPO DEPORTISTAS -->
+      <div class="context-alert">
+        <strong>⚠️ Nota Explicativa de Revenue Management — Grupo de Deportistas Colombianos:</strong><br>
+        Durante el fin de semana del 21 al 27 de septiembre ingresó una delegación deportiva de aproximadamente <strong>19 huéspedes nacionales</strong> canalizados mediante la reserva maestra de Santiago Posada[cite: 1]. Por tal motivo, el repunte de Colombia al <strong>30,6%</strong> de los titulares semanales representa una anomalía positiva por reserva grupal y <strong>no debe interpretarse como un desplazamiento estructural</strong> del perfil habitual del hostal, el cual se mantiene predominantemente internacional (90,1% en el consolidado anual con Europa liderando con 59,0%)[cite: 1].
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Distribución Geográfica: Semana vs. Mes vs. Año</h3>
+          <div class="chart-box">
+            <canvas id="chartDemografia"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Top Nacionalidades Semana (21 - 27 Sep)</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>País</th>
+                  <th class="text-center">Titulares</th>
+                  <th class="text-right">Part. Semana</th>
+                  <th class="text-right">Part. Mes</th>
+                  <th class="text-right">Part. Año</th>
+                </tr>
+              </thead>
+              <tbody id="tablaDemografia">
+                <!-- Inyección JS -->
+              </tbody>
+            </table>
+          </div>
+          <div class="insight-card">
+            <strong>Composición Macro-Regional:</strong> Europa aportó el <strong>47,2%</strong> del flujo semanal (Alemania 13,9%, Reino Unido 9,7%, Francia 8,3% y España 8,3%), mientras Norteamérica representó el 9,7% y Oceanía el 5,6%[cite: 1].
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. ESTRATEGIA -->
+    <section id="estrategia">
+      <div class="section-header">
+        <h2><span>🧭</span> SECCIÓN 12 — Semáforo Ejecutivo y Plan de Acción</h2>
+        <span class="section-subtitle">Conclusiones integradas y decisiones recomendadas para Dirección</span>
+      </div>
+      <div class="strategy-grid">
+        <div class="strategy-col col-fortalezas">
+          <h3>🟢 FORTALEZAS</h3>
+          <ul>
+            <li><strong>Repunte Ocupacional Sólido:</strong> 50,0% de ocupación (+13,1 pp vs semana previa), superando con holgura los registros de la misma semana de 2025 (20,0%) y 2024 (31,4%)[cite: 1].</li>
+            <li><strong>Canal Directo Consolidado:</strong> Las reservas directas representaron el 51,6% del total y aportaron el 44,6% del valor de check-ins ($5,32M COP), impulsadas por Santiago Posada ($1,99M COP)[cite: 1].</li>
+            <li><strong>Generación de Valor en Upsell:</strong> Se generaron +$279.298 COP en upgrades confirmados (+29,9% vs periodo previo) elevando un 24,9% la tarifa de los huéspedes convertidos[cite: 1].</li>
+            <li><strong>Motor Privadas:</strong> Las habitaciones privadas concentraron el 71,1% del recaudo efectivo por check-in con un ADR de $90.950 frente a $38.710 en dormitorios[cite: 1].</li>
+          </ul>
+        </div>
+
+        <div class="strategy-col col-atencion">
+          <h3>🟠 ATENCIÓN</h3>
+          <ul>
+            <li><strong>Brecha Comercial OTAs vs. Directo:</strong> Las OTAs aún retienen el 68,8% del valor de las reservas creadas ($10,91M vs $4,95M de canales directos) debido a mayores estancias[cite: 1].</li>
+            <li><strong>Dependencia del Corto Plazo:</strong> El 70,3% de las reservas se realizaron con 0 o 1 día de anticipación, generando fluctuaciones diarias de inventario[cite: 1].</li>
+            <li><strong>Pipeline Abierto en Upselling:</strong> Hay $672.615 COP sobre la mesa; cuatro clientes acumulan el 78,1% del valor por monetizar[cite: 1].</li>
+            <li><strong>Consistencia entre Semana:</strong> Lunes y miércoles marcaron 36% de ocupación, contrastando con el 84% alcanzado el viernes[cite: 1].</li>
+          </ul>
+        </div>
+
+        <div class="strategy-col col-riesgos">
+          <h3>🔴 RIESGOS</h3>
+          <ul>
+            <li><strong>Oportunidades de Upgrade Vencidas:</strong> Se perdieron $150.000 COP en 2 casos que llegaron al check-in sin haberse cerrado previamente[cite: 1].</li>
+            <li><strong>Desbalance Fin de Semana:</strong> Sábado (50%) y domingo (44%) no mantuvieron la inercia del viernes (84%), mostrando caída en estadías consecutivas[cite: 1].</li>
+            <li><strong>Concentración en Hotelería:</strong> El 83,7% del egreso operativo ($1,57M COP) corresponde a hotelería general[cite: 1], requiriendo clasificación analítica continua.</li>
+          </ul>
+        </div>
+
+        <div class="strategy-col col-acciones">
+          <h3>🔵 ACCIONES / REVENUE</h3>
+          <ul>
+            <li><strong>Cierre Activo de Pipeline:</strong> Enfocar gestión directa en los $525.000 COP de Gontran, Pavlos, Julian y Nadia antes de sus fechas de arribo[cite: 1].</li>
+            <li><strong>Estrategia de Estancias Extendidas:</strong> Diseñar tarifas escalonadas para reservas directas que reduzcan el costo marginal de la 3ª noche y eleven la estadía media hacia 2,5 noches.</li>
+            <li><strong>Captura Anticipada de Privadas:</strong> Abrir venta directa en web con beneficios exclusivos (early check-in) para disputar las reservas de alta antelación de Booking.com.</li>
+            <li><strong>Segmentación de Grupos:</strong> Crear en PMS un código comercial específico para grupos deportivos/corporativos para evaluar ocupación base vs. eventos especiales.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Casa Kiwi Hostel Medellín — Sistema de Business Intelligence & Revenue Management</p>
+    <p style="font-size:0.75rem; margin-top:0.35rem; color:#888;">Generado oficialmente el 28 de septiembre de 2026 | Datos auditados con PMS Lobby</p>
+  </footer>
+
+  <!-- LÓGICA DE DATOS Y RENDERIZADO CENTRALIZADO -->
+  <script>
+    // 1. OBJETO CENTRAL DE DATOS AUDITADOS (Semana 21-27 Septiembre 2026)
+    const reportData = {
+      periodo: "21 - 27 de Septiembre de 2026",
+      corte: "28 de Septiembre de 2026",
+      capacidadDiaria: 50,
+      capacidadSemanal: 350,
+      ocupacionTotalVendida: 175,
+      ocupacionPorcentaje: 50.0,
+      
+      kpis: [
+        { title: "Ventas Totales PMS", value: "$16.879.566", sub: "Producción devengada en sistema", badge: "+8,1% vs Sem. Ant.", status: "green", icon: "📈" },
+        { title: "Ingresos Recibidos", value: "$11.053.664", sub: "Recaudo liquidado del periodo", badge: "77,1% Digital", status: "green", icon: "💳" },
+        { title: "Anticipos en Caja", value: "$2.364.005", sub: "Reservas futuras pre-cobradas", badge: "90,4% Privadas", status: "blue", icon: "🛡️" },
+        { title: "Flujo Neto Estimado", value: "$11.543.785", sub: "Entradas ($13,42M) - Egresos ($1,87M)", badge: "Ratio 7,16 a 1", status: "green", icon: "💵" },
+        { title: "Ocupación Semanal", value: "50,0%", sub: "175 / 350 unidades vendidas", badge: "+13,1 pp vs 14-20 Sep", status: "green", icon: "🛌" },
+        { title: "Check-ins Efectivos", value: "85 (126 pax)", sub: "Producción total $11,94M COP", badge: "44,6% Directo", status: "blue", icon: "🔑" },
+        { title: "Reservas Creadas", value: "91 reservas", sub: "Valor ajustado $15,87M COP", badge: "51,6% Directas", status: "yellow", icon: "📝" },
+        { title: "Santiago Posada", value: "$1.996.734", sub: "6 reservas (Ticket $332.789)", badge: "Grupo $1,21M (100% Pagado)", status: "green", icon: "🏅" },
+        { title: "Upselling Monetizado", value: "$279.298", sub: "4 upgrades (+29,9% vs piloto)", badge: "$672K en Pipeline", status: "green", icon: "🚀" },
+        { title: "Mercado Líder", value: "Colombia (30,6%)", sub: "Influencia grupo deportivo (19 pax)", badge: "Evento Especial", status: "orange", icon: "🇨🇴" }
+      ],
+
+      ocupacionDiaria: [
+        { fecha: "21 Sep", dia: "Lunes", disponible: 50, vendidas: 18, sinVender: 32, ocup: 36.0, peak: false },
+        { fecha: "22 Sep", dia: "Martes", disponible: 50, vendidas: 22, sinVender: 28, ocup: 44.0, peak: false },
+        { fecha: "23 Sep", dia: "Miércoles", disponible: 50, vendidas: 18, sinVender: 32, ocup: 36.0, peak: false },
+        { fecha: "24 Sep", dia: "Jueves", disponible: 50, vendidas: 28, sinVender: 22, ocup: 56.0, peak: false },
+        { fecha: "25 Sep", dia: "Viernes", disponible: 50, vendidas: 42, sinVender: 8, ocup: 84.0, peak: true },
+        { fecha: "26 Sep", dia: "Sábado", disponible: 50, vendidas: 25, sinVender: 25, ocup: 50.0, peak: false },
+        { fecha: "27 Sep", dia: "Domingo", disponible: 50, vendidas: 22, sinVender: 28, ocup: 44.0, peak: false }
+      ],
+
+      flujoInOut: [
+        { dia: "Lun 21", ins: 5, outs: 4, neto: "+1", ocup: "36%", impacto: "Operación fluida de inicio de semana" },
+        { dia: "Mar 22", ins: 15, outs: 11, neto: "+4", ocup: "44%", impacto: "Rotación media habitual" },
+        { dia: "Mié 23", ins: 6, outs: 10, neto: "-4", ocup: "36%", impacto: "Recambio de cuartos ordenado" },
+        { dia: "Jue 24", ins: 14, outs: 4, neto: "+10", ocup: "56%", impacto: "Preparación para el fin de semana" },
+        { dia: "Vie 25", ins: 33, outs: 19, neto: "+14", ocup: "84%", impacto: "Máxima afluencia semanal (Llegada Grupo)" },
+        { dia: "Sáb 26", ins: 8, outs: 25, neto: "-17", ocup: "50%", impacto: "Salida del grupo deportivo y estancias cortas" },
+        { dia: "Dom 27", ins: 4, outs: 7, neto: "-3", ocup: "44%", impacto: "Cierre balanceado de operaciones" }
+      ],
+
+      ventasCategorias: [
+        { categoria: "Habitaciones Privadas", monto: 8767208, pct: 51.9 },
+        { categoria: "Dormitorios", monto: 4858608, pct: 28.8 },
+        { categoria: "Bar", monto: 2603000, pct: 15.4 },
+        { categoria: "Extras", monto: 650750, pct: 3.9 }
+      ],
+
+      mediosPago: [
+        { medio: "Tarjeta de Crédito", monto: 6483584, pct: 58.7 },
+        { medio: "Tarjeta Débito", monto: 2032237, pct: 18.4 },
+        { medio: "Efectivo", monto: 1434239, pct: 13.0 },
+        { medio: "Bold (Pasarela)", monto: 1103604, pct: 10.0 }
+      ],
+
+      // Check-ins Canales corregidos incorporando Santiago Posada con grupo completo
+      checkinsCanales: [
+        { canal: "Hostelworld", rsv: 29, nights: 64, valor: 4562200, pct: 38.2, ticket: 157317 },
+        { canal: "Recepción (Directo)", rsv: 26, nights: 48, valor: 3002560, pct: 25.2, ticket: 115483 },
+        { canal: "Booking.com", rsv: 7, nights: 21, valor: 2050718, pct: 17.2, ticket: 292960 },
+        { canal: "Santiago Posada (Directo)", rsv: 6, nights: 28, valor: 1996734, pct: 16.7, ticket: 332789 },
+        { canal: "Booking Engine (Web)", rsv: 1, nights: 5, valor: 325000, pct: 2.7, ticket: 325000 }
+      ],
+
+      reservasCreadas: [
+        { canal: "Booking.com", rsv: 13, lobby: 6667392, comision: 1200131, neto: 5467261, noches: 3.31, antic: 30.62 },
+        { canal: "Hostelworld", rsv: 31, lobby: 4320398, comision: 1123303, neto: 5443701, noches: 2.48, antic: 2.58 },
+        { canal: "Recepción", rsv: 23, lobby: 2708180, comision: 0, neto: 2708180, noches: 1.91, antic: -0.13 },
+        { canal: "Santiago Posada", rsv: 23, lobby: 1925252, comision: 0, neto: 1925252, noches: 1.35, antic: 1.91 },
+        { canal: "Booking Engine", rsv: 1, lobby: 325000, comision: 0, neto: 325000, noches: 5.00, antic: 0.00 }
+      ],
+
+      demografiaSemana: [
+        { pais: "Colombia", titulares: 22, partSem: 30.6, partMes: 21.8, partAno: 9.9, alerta: true },
+        { pais: "Alemania", titulares: 10, partSem: 13.9, partMes: 10.4, partAno: 12.3, alerta: false },
+        { pais: "Reino Unido", titulares: 7, partSem: 9.7, partMes: 9.4, partAno: 10.8, alerta: false },
+        { pais: "Francia", titulares: 6, partSem: 8.3, partMes: 11.4, partAno: 15.3, alerta: false },
+        { pais: "España", titulares: 6, partSem: 8.3, partMes: 6.9, partAno: 3.4, alerta: false },
+        { pais: "Estados Unidos", titulares: 5, partSem: 6.9, partMes: 5.9, partAno: 9.2, alerta: false },
+        { pais: "Australia", titulares: 3, partSem: 4.2, partMes: 5.4, partAno: 3.7, alerta: false },
+        { pais: "Canadá", titulares: 2, partSem: 2.8, partMes: 2.0, partAno: 3.2, alerta: false },
+        { pais: "Perú", titulares: 2, partSem: 2.8, partMes: 2.0, partAno: 1.5, alerta: false },
+        { pais: "Otros (9 Países)", titulares: 9, partSem: 12.5, partMes: 18.3, partAno: 19.7, alerta: false }
+      ]
+    };
+
+    // 2. FORMATEADORES AUXILIARES
+    const formatCOP = (num) => new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(num);
+    const formatPct = (num) => num.toFixed(1) + "%";
+
+    // 3. INICIALIZADOR DE INTERFAZ
+    document.addEventListener("DOMContentLoaded", () => {
+      // Frase Ejecutiva Automática
+      document.getElementById("executiveHeadline").innerHTML = 
+        `<strong>Síntesis de Dirección:</strong> La semana del 21 al 27 de septiembre alcanzó <strong>$16,88M COP en ventas PMS</strong> y una ocupación del <strong>50,0% (+13,1 pp)</strong>, dinamizada por el viernes 25 (84%) y la consolidación del grupo deportivo[cite: 1]. Con la liquidación completa de Santiago Posada ($1,99M COP con ticket promedio de $332.789 COP), la venta directa representó el <strong>44,6% del recaudo efectivo</strong>[cite: 1]. La caja generó <strong>+$11,54M COP netos</strong>[cite: 1], mientras la estrategia de upselling aportó <strong>+$279.298 COP en valor incremental confirmado</strong> con $672K pendientes en seguimiento comercial[cite: 1].`;
+
+      // Render KPIs
+      const kpiContainer = document.getElementById("kpiContainer");
+      reportData.kpis.forEach(k => {
+        kpiContainer.innerHTML += `
+          <div class="kpi-card ${k.status}">
+            <div class="kpi-top">
+              <span class="kpi-title">${k.title}</span>
+              <span class="kpi-icon">${k.icon}</span>
+            </div>
+            <div class="kpi-value">${k.value}</div>
+            <div class="kpi-subtext">${k.sub}</div>
+            <span class="kpi-badge badge-${k.status === 'green' ? 'success' : k.status === 'yellow' ? 'warning' : k.status === 'orange' ? 'orange' : 'info'}">${k.badge}</span>
+          </div>
+        `;
+      });
+
+      // Render Tabla Ocupación
+      const tablaOcup = document.getElementById("tablaOcupacion");
+      reportData.ocupacionDiaria.forEach(r => {
+        tablaOcup.innerHTML += `
+          <tr class="${r.peak ? 'highlight-peak' : ''}">
+            <td>${r.fecha}</td>
+            <td><strong>${r.dia}</strong></td>
+            <td class="text-right">${r.disponible}</td>
+            <td class="text-right">${r.vendidas}</td>
+            <td class="text-right">${r.sinVender}</td>
+            <td class="text-right"><strong>${r.ocup.toFixed(1)}%</strong></td>
+          </tr>
+        `;
+      });
+      tablaOcup.innerHTML += `
+        <tr class="row-total">
+          <td colspan="2">TOTAL SEMANAL</td>
+          <td class="text-right">350</td>
+          <td class="text-right">175</td>
+          <td class="text-right">175</td>
+          <td class="text-right">50,0% Prom.</td>
+        </tr>
+      `;
+
+      // Render Tabla Flujo In/Out
+      const tablaFlujo = document.getElementById("tablaFlujo");
+      reportData.flujoInOut.forEach(f => {
+        tablaFlujo.innerHTML += `
+          <tr>
+            <td><strong>${f.dia}</strong></td>
+            <td class="text-center" style="color:var(--alert-green); font-weight:700;">${f.ins}</td>
+            <td class="text-center" style="color:var(--kiwi-gray-dark); font-weight:700;">${f.outs}</td>
+            <td class="text-center"><strong>${f.neto}</strong></td>
+            <td class="text-center">${f.ocup}</td>
+            <td style="font-size:0.78rem;">${f.impacto}</td>
+          </tr>
+        `;
+      });
+      tablaFlujo.innerHTML += `
+        <tr class="row-total">
+          <td>TOTALES</td>
+          <td class="text-center" style="color:var(--alert-green);">85</td>
+          <td class="text-center">80 (Est.)</td>
+          <td class="text-center">+5</td>
+          <td class="text-center">50,0%</td>
+          <td>Rotación fluida y balanceada</td>
+        </tr>
+      `;
+
+      // Render Tabla Ventas por Categoría
+      const tablaVentas = document.getElementById("tablaVentasCat");
+      reportData.ventasCategorias.forEach(v => {
+        tablaVentas.innerHTML += `
+          <tr>
+            <td>${v.categoria}</td>
+            <td class="text-right">${formatCOP(v.monto)}</td>
+            <td class="text-right">${v.pct.toFixed(1)}%</td>
+          </tr>
+        `;
+      });
+      tablaVentas.innerHTML += `
+        <tr class="row-total">
+          <td>TOTAL PMS</td>
+          <td class="text-right">$16.879.566</td>
+          <td class="text-right">100.0%</td>
+        </tr>
+      `;
+
+      // Render Tabla Medios de Pago
+      const tablaMedios = document.getElementById("tablaMediosPago");
+      reportData.mediosPago.forEach(m => {
+        tablaMedios.innerHTML += `
+          <tr>
+            <td>${m.medio}</td>
+            <td class="text-right">${formatCOP(m.monto)}</td>
+            <td class="text-right">${m.pct.toFixed(1)}%</td>
+          </tr>
+        `;
+      });
+      tablaMedios.innerHTML += `
+        <tr class="row-total">
+          <td>TOTAL RECIBIDO</td>
+          <td class="text-right">$11.053.664</td>
+          <td class="text-right">100.0%</td>
+        </tr>
+      `;
+
+      // Render Check-ins Canales (Recalibrado con Santiago Posada)
+      const tablaCheck = document.getElementById("tablaCheckinsCanales");
+      let totCheckinsValor = 0;
+      reportData.checkinsCanales.forEach(c => {
+        totCheckinsValor += c.valor;
+        tablaCheck.innerHTML += `
+          <tr class="${c.canal.includes('Santiago') ? 'highlight-peak' : ''}">
+            <td><strong>${c.canal}</strong></td>
+            <td class="text-center">${c.rsv}</td>
+            <td class="text-center">${c.nights}</td>
+            <td class="text-right"><strong>${formatCOP(c.valor)}</strong></td>
+            <td class="text-right">${formatCOP(c.ticket)}</td>
+            <td class="text-right">${c.pct.toFixed(1)}%</td>
+          </tr>
+        `;
+      });
+      tablaCheck.innerHTML += `
+        <tr class="row-total">
+          <td>TOTAL CONSOLIDADO</td>
+          <td class="text-center">69 Res.</td>
+          <td class="text-center">166</td>
+          <td class="text-right" style="color:var(--alert-green);">${formatCOP(totCheckinsValor)}</td>
+          <td class="text-right">$173.003</td>
+          <td class="text-right">100.0%</td>
+        </tr>
+      `;
+
+      // Render Reservas Creadas
+      const tablaRsv = document.getElementById("tablaReservasCreadas");
+      reportData.reservasCreadas.forEach(r => {
+        tablaRsv.innerHTML += `
+          <tr>
+            <td><strong>${r.canal}</strong></td>
+            <td class="text-center">${r.rsv}</td>
+            <td class="text-right">${formatCOP(r.lobby)}</td>
+            <td class="text-right" style="color:var(--alert-red);">${formatCOP(r.comision)}</td>
+            <td class="text-right" style="font-weight:700;">${formatCOP(r.neto)}</td>
+            <td class="text-center">${r.antic.toFixed(1)} d</td>
+          </tr>
+        `;
+      });
+      tablaRsv.innerHTML += `
+        <tr class="row-total">
+          <td>TOTALES</td>
+          <td class="text-center">91</td>
+          <td class="text-right">$15.946.222</td>
+          <td class="text-right" style="color:var(--alert-red);">$2.323.434</td>
+          <td class="text-right">$15.869.395</td>
+          <td class="text-center">5.70 d Prom.</td>
+        </tr>
+      `;
+
+      // Render Tabla Demografía
+      const tablaDemo = document.getElementById("tablaDemografia");
+      reportData.demografiaSemana.forEach(d => {
+        tablaDemo.innerHTML += `
+          <tr class="${d.alerta ? 'highlight-peak' : ''}">
+            <td><strong>${d.pais}</strong> ${d.alerta ? '🏅 (Delegación)' : ''}</td>
+            <td class="text-center">${d.titulares}</td>
+            <td class="text-right"><strong>${d.partSem.toFixed(1)}%</strong></td>
+            <td class="text-right">${d.partMes.toFixed(1)}%</td>
+            <td class="text-right">${d.partAno.toFixed(1)}%</td>
+          </tr>
+        `;
+      });
+
+      // 4. GENERACIÓN DE GRÁFICOS (Chart.js)
+      initCharts();
+    });
+
+    function initCharts() {
+      // 1. Gráfico Ocupación Diaria
+      new Chart(document.getElementById("chartOcupacion"), {
+        type: "bar",
+        data: {
+          labels: reportData.ocupacionDiaria.map(d => d.dia),
+          datasets: [
+            {
+              label: "Ocupación Real (%)",
+              data: reportData.ocupacionDiaria.map(d => d.ocup),
+              backgroundColor: reportData.ocupacionDiaria.map(d => d.peak ? "#2E7D32" : "#E64A19"),
+              borderRadius: 6
+            },
+            {
+              label: "Promedio Semanal (50.0%)",
+              data: [50, 50, 50, 50, 50, 50, 50],
+              type: "line",
+              borderColor: "#1A1A1A",
+              borderWidth: 2,
+              borderDash: [5, 5],
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { min: 0, max: 100, ticks: { callback: v => v + "%" } } }
+        }
+      });
+
+      // 2. Gráfico Flujo In / Out
+      new Chart(document.getElementById("chartFlujoInOut"), {
+        type: "bar",
+        data: {
+          labels: reportData.flujoInOut.map(f => f.dia),
+          datasets: [
+            {
+              label: "Check-ins (Llegadas)",
+              data: reportData.flujoInOut.map(f => f.ins),
+              backgroundColor: "#2E7D32",
+              borderRadius: 4
+            },
+            {
+              label: "Check-outs (Salidas)",
+              data: reportData.flujoInOut.map(f => f.outs),
+              backgroundColor: "#757575",
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+
+      // 3. Ventas por Categoría (Doughnut)
+      new Chart(document.getElementById("chartCategoriasVentas"), {
+        type: "doughnut",
+        data: {
+          labels: reportData.ventasCategorias.map(v => v.categoria),
+          datasets: [{
+            data: reportData.ventasCategorias.map(v => v.monto),
+            backgroundColor: ["#E64A19", "#FBC02D", "#1A1A1A", "#757575"]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: "bottom" } }
+        }
+      });
+
+      // 4. Medios de Pago
+      new Chart(document.getElementById("chartMediosPago"), {
+        type: "bar",
+        data: {
+          labels: reportData.mediosPago.map(m => m.medio),
+          datasets: [{
+            label: "Ingresos COP",
+            data: reportData.mediosPago.map(m => m.monto),
+            backgroundColor: ["#1565C0", "#0288D1", "#2E7D32", "#FF5722"],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { x: { ticks: { callback: v => "$" + (v / 1e6) + "M" } } }
+        }
+      });
+
+      // 5. Check-outs Privadas vs Dorms
+      new Chart(document.getElementById("chartCheckouts"), {
+        type: "pie",
+        data: {
+          labels: ["Privadas ($7,73M)", "Dormitorios ($3,14M)"],
+          datasets: [{
+            data: [7730753, 3135525],
+            backgroundColor: ["#E64A19", "#FBC02D"]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: "bottom" } }
+        }
+      });
+
+      // 6. Ingreso Check-ins por Canal (Actualizado con Santiago Posada $1,99M)
+      new Chart(document.getElementById("chartCheckinsCanales"), {
+        type: "bar",
+        data: {
+          labels: ["Hostelworld", "Recepción", "Booking.com", "Santiago Posada", "Motor Web"],
+          datasets: [
+            {
+              label: "Ingreso Ajustado Kiwi (COP)",
+              data: [4562200, 3002560, 2050718, 1996734, 325000],
+              backgroundColor: ["#757575", "#2E7D32", "#757575", "#E64A19", "#2E7D32"],
+              borderRadius: 4
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { ticks: { callback: v => "$" + (v / 1e6) + "M" } } }
+        }
+      });
+
+      // 7. Reservas Creadas Mix
+      new Chart(document.getElementById("chartReservasMix"), {
+        type: "doughnut",
+        data: {
+          labels: ["Hostelworld (31)", "Recepción (23)", "Santiago Posada (23)", "Booking (13)", "Motor Web (1)"],
+          datasets: [{
+            data: [31, 23, 23, 13, 1],
+            backgroundColor: ["#E64A19", "#2E7D32", "#1565C0", "#FBC02D", "#1A1A1A"]
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: "bottom" } }
+        }
+      });
+
+      // 8. Comparativa Semanas de Septiembre
+      new Chart(document.getElementById("chartCompSemanas"), {
+        type: "bar",
+        data: {
+          labels: ["7-13 Sep", "14-20 Sep", "21-27 Sep"],
+          datasets: [{
+            label: "Ocupación %",
+            data: [38.9, 36.9, 50.0],
+            backgroundColor: ["#757575", "#757575", "#E64A19"],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { min: 0, max: 70, ticks: { callback: v => v + "%" } } }
+        }
+      });
+
+      // 9. Comparativa Misma Semana Años Anteriores
+      new Chart(document.getElementById("chartCompHistorica"), {
+        type: "line",
+        data: {
+          labels: ["2021", "2022", "2023", "2024", "2025", "2026"],
+          datasets: [{
+            label: "Ocupación 21-27 Sep (%)",
+            data: [59.4, 76.0, 26.6, 31.4, 20.0, 50.0],
+            borderColor: "#E64A19",
+            backgroundColor: "rgba(230, 74, 25, 0.1)",
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { min: 0, max: 100, ticks: { callback: v => v + "%" } } }
+        }
+      });
+
+      // 10. Ocupación Mensual 2026
+      new Chart(document.getElementById("chartCompMeses"), {
+        type: "bar",
+        data: {
+          labels: ["Mayo", "Junio", "Julio", "Agosto", "Sep (1-27)"],
+          datasets: [{
+            label: "Ocupación Mensual (%)",
+            data: [28.6, 42.3, 37.2, 51.7, 41.3],
+            backgroundColor: ["#757575", "#757575", "#757575", "#2E7D32", "#E64A19"],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { min: 0, max: 70, ticks: { callback: v => v + "%" } } }
+        }
+      });
+
+      // 11. Comparativa Demográfica Macro-Mercados
+      new Chart(document.getElementById("chartDemografia"), {
+        type: "bar",
+        data: {
+          labels: ["Colombia", "Europa", "Norteamérica", "Latam (Sin Col)", "Oceanía"],
+          datasets: [
+            {
+              label: "Semana 21-27 (%)",
+              data: [30.6, 47.2, 9.7, 5.6, 5.6],
+              backgroundColor: "#E64A19"
+            },
+            {
+              label: "Consolidado Año 2026 (%)",
+              data: [9.9, 59.0, 12.4, 12.3, 4.8],
+              backgroundColor: "#1A1A1A"
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { ticks: { callback: v => v + "%" } } }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
